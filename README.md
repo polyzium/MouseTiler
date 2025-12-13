@@ -146,7 +146,7 @@ kwriteconfig6 --file kwinrc --group Plugins --key mousetilerEnabled false
 qdbus org.kde.KWin /KWin reconfigure
 ```
 
-If the window configuration contains corrupted data, it can be manually deleted in the file: `~/.config/kde.org/kwin.conf` under key `...`.
+If the mouse tiler configuration contains corrupted data, it can be manually deleted in the file: `~/.config/kde.org/kwin.conf` under key `TBD`.
 
 ## <p id="compatibility"></p>Compatibility ##
 

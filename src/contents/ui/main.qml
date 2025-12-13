@@ -349,7 +349,8 @@ SPECIAL_FILL-Fill
 
     function getFillGeometry(client, largest) {
         let screenGeometry = Workspace.activeScreen.geometry;
-        let freeAreas = [Qt.rect(screenGeometry.x, screenGeometry.y, screenGeometry.width, screenGeometry.height)];
+        //let freeAreas = [Qt.rect(screenGeometry.x, screenGeometry.y, screenGeometry.width, screenGeometry.height)];
+        let freeAreas = [Workspace.clientArea(KWin.FullScreenArea, Workspace.activeScreen, Workspace.currentDesktop)];
 
         const windows = Workspace.stackingOrder;
         for (var i = 0; i < windows.length; i++) {

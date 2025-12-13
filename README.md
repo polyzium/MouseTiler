@@ -11,7 +11,7 @@ Allows you to tile your windows with minimum effort by moving the mouse just a f
 
 * Tested on Fedora 42 KDE running Wayland and X11 with Plasma version 6.5.2.
 
-[![kde-store](https://img.shields.io/badge/KDE%20Store-download-blue?logo=KDE)]()
+[![kde-store](https://img.shields.io/badge/KDE%20Store-download-blue?logo=KDE)](https://store.kde.org/p/2334027)
 
 
 # Table of contents
@@ -63,7 +63,7 @@ Allows you to tile your windows with minimum effort by moving the mouse just a f
 
 * Preview of where the tile will end up
 * GUI configuration
-    * Default layout suggestions based on screeen ratio (such as 16:9, 32:9, 4:3 - not sure which ones will be implemented yet)
+    * Default layout suggestions based on screen ratio (such as 16:9, 32:9, 4:3 - not sure which ones will be implemented yet)
 * Define better default script colors - currently they are more or less just hex values I randomly typed towards blueish theme
 * Use current theme colors instead (with option to use the default script colors - per user choice)
 * Implement all the settings (and more) currently disabled in the configuration dialog

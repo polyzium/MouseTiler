@@ -378,7 +378,7 @@ SPECIAL_FILL-Fill
                         if (coordinates[0].startsWith('SPECIAL_')) {
                             switch (coordinates[0]) {
                                 case 'SPECIAL_FILL':
-                                    layout.tiles.push({x: 0, y: 0, w: 75, h: 100, t: "« &nbsp;&nbsp; FILL &nbsp;&nbsp; »", hint: "Fill largest empty space (if any available)"});
+                                    layout.tiles.push({x: 0, y: 0, w: 75, h: 100, t: "« &nbsp; FILL &nbsp; »", hint: "Fill largest empty space (if any available)"});
                                     layout.tiles.push({x: 75, y: 0, w: 25, h: 100, t: "« »", d: false, hint: "Fill smallest empty space (if any available)"});
                                     layout.special = 'SPECIAL_FILL';
                                     isValid = true;

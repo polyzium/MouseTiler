@@ -235,7 +235,7 @@ PlasmaCore.Dialog {
                                         color: textColor
                                         textFormat: Text.StyledText
                                         text: modelData.t && modelData.t.length > 0 ? modelData.t : ""
-                                        font.pixelSize: 16
+                                        font.pixelSize: 14
                                         font.family: "Hack"
                                         horizontalAlignment: Text.AlignHCenter
                                         visible: modelData.t

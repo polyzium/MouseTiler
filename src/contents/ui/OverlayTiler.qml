@@ -128,7 +128,7 @@ PlasmaCore.Dialog {
 
                     Text {
                         anchors.centerIn: parent
-                        color: textColor
+                        color: overlayTextColor
                         textFormat: Text.StyledText
                         text: spannedFrom ? "Stop spanning (<b>Ctrl+Space</b> by default)<br>Toggle visibility (<b>Meta+Space</b> by default)<br><br>Switch mode (<b>Ctrl+Meta+Space</b> by default)" : "Span from this tile (<b>Ctrl+Space</b> by default)<br>Toggle visibility (<b>Meta+Space</b> by default)<br><br>Switch mode (<b>Ctrl+Meta+Space</b> by default)"
                         font.pixelSize: 16

@@ -39,7 +39,7 @@
        <item>
         <widget class="QLabel" name="label_25">
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;ALPHA - Many of the settings found here will move to the configuration dialog (accessed via the &lt;/span&gt;&lt;span style=&quot; font-weight:700; color:#ff0000;&quot;&gt;Ctrl+.&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt; shortcut) and might require manual readjusting once the v1.0.0 releases. Some of the settings found here do not currently work (they will be disabled until they are implemented in future releases). More settings will be added over time.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;ALPHA - Some of the settings found here might move to the configuration dialog (accessed via the &lt;/span&gt;&lt;span style=&quot; font-weight:700; color:#ff0000;&quot;&gt;Ctrl+.&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt; shortcut) and might require manual readjusting once the v1.0.0 releases. More settings might be added over time.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -169,6 +169,41 @@
               <item>
                <property name="text">
                 <string>Alpha test blue</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Orange</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Red</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Lime Green</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Purple</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Green</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Yellow</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Blue</string>
                </property>
               </item>
              </widget>

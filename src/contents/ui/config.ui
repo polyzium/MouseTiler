@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>970</width>
-    <height>658</height>
+    <width>974</width>
+    <height>740</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+   <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -19,7 +19,7 @@
   <property name="minimumSize">
    <size>
     <width>950</width>
-    <height>0</height>
+    <height>500</height>
    </size>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -36,16 +36,6 @@
        <string>General</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_general">
-       <item>
-        <widget class="QLabel" name="label_25">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;ALPHA - Some of the settings found here might move to the configuration dialog (accessed via the &lt;/span&gt;&lt;span style=&quot; font-weight:700; color:#ff0000;&quot;&gt;Ctrl+.&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt; shortcut) and might require manual readjusting once the v1.0.0 releases. More settings might be added over time.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
        <item>
         <widget class="QGroupBox" name="groupBox_defaultTiler">
          <property name="enabled">
@@ -144,6 +134,13 @@
           <string>Colors</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_14">
+          <item>
+           <widget class="QLabel" name="label_42">
+            <property name="text">
+             <string>Change the tiler color theme. By default the tiler follows your current theme colors.</string>
+            </property>
+           </widget>
+          </item>
           <item>
            <layout class="QFormLayout" name="formLayout_3">
             <item row="0" column="0">
@@ -316,7 +313,7 @@
                <string> ms</string>
               </property>
               <property name="minimum">
-               <number>100</number>
+               <number>10</number>
               </property>
               <property name="maximum">
                <number>3000</number>
@@ -339,6 +336,9 @@
          <property name="orientation">
           <enum>Qt::Orientation::Vertical</enum>
          </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::MinimumExpanding</enum>
+         </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>0</width>
@@ -350,7 +350,6 @@
       </layout>
       <zorder>verticalSpacer_general</zorder>
       <zorder>groupBox_defaultTiler</zorder>
-      <zorder>label_25</zorder>
       <zorder>groupBox</zorder>
       <zorder>groupBox_6</zorder>
       <zorder>kcfg_autoHide</zorder>
@@ -506,10 +505,13 @@
          <property name="orientation">
           <enum>Qt::Orientation::Vertical</enum>
          </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::MinimumExpanding</enum>
+         </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>20</width>
-           <height>40</height>
+           <width>0</width>
+           <height>0</height>
           </size>
          </property>
         </spacer>
@@ -527,7 +529,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox_5">
          <property name="title">
-          <string>Popup settings</string>
+          <string>General settings</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_13">
           <item>
@@ -546,6 +548,127 @@
              <bool>true</bool>
             </property>
            </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="kcfg_showTextHint">
+            <property name="text">
+             <string>Show text hint below the tiler. Keyboard shortcuts and fill/split information is displayed in the hint.</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_7">
+         <property name="title">
+          <string>Position</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_16">
+          <item>
+           <widget class="QLabel" name="label_24">
+            <property name="text">
+             <string>Determines where the Popup Grid will be displayed. You can chose to show it below mouse pointer or at a fixed screen position.</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QFormLayout" name="formLayout_5">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_39">
+              <property name="text">
+               <string>Show</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_40">
+              <property name="text">
+               <string>Horizontal alignment</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_41">
+              <property name="text">
+               <string>Vertical alignment</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="kcfg_popupGridAt">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <item>
+               <property name="text">
+                <string>Below mouse pointer</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>At fixed screen position</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="kcfg_horizontalAlignment">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <item>
+               <property name="text">
+                <string>Left</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Center</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Right</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QComboBox" name="kcfg_verticalAlignment">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <item>
+               <property name="text">
+                <string>Top</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Center</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Bottom</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -578,7 +701,7 @@
             <item row="1" column="0">
              <widget class="QLabel" name="label_34">
               <property name="text">
-               <string>Layout Spacing</string>
+               <string>Layout spacing</string>
               </property>
              </widget>
             </item>
@@ -755,10 +878,13 @@
          <property name="orientation">
           <enum>Qt::Orientation::Vertical</enum>
          </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::MinimumExpanding</enum>
+         </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>20</width>
-           <height>40</height>
+           <width>0</width>
+           <height>0</height>
           </size>
          </property>
         </spacer>
@@ -782,12 +908,21 @@
           <item>
            <widget class="QLabel" name="label_popupLayoutDisclaimer">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;This is just a temporary solution - an UI designer will replace it in the future.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;This was meant to be just a temporary solution - an UI designer was going to replace it (accessed via the &lt;/span&gt;&lt;span style=&quot; font-weight:700; color:#ff0000;&quot;&gt;Ctrl+.&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt; shortcut).&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;However the UI designer is a lot of work, probaly at least 1-2 weeks full time. Sadly I got rent to pay and a 3 year old son to feed and based on my previous project Remember Window Positions, I will not be able to feed us from my contributions to Linux. (After over 3 months full time work I earned $100 total which I apreciate but it's not possible to survive on).&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;I might implement it in the future if the situation changes.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPlainTextEdit" name="kcfg_popupLayout">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="lineWrapMode">
              <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
             </property>
@@ -799,7 +934,7 @@
           <item>
            <widget class="QLabel" name="label_popupLayoutExplanation">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the layouts for the Popup mode - one layout per line.&lt;br/&gt;&lt;br/&gt;Valid format is either a grid [XxY] (example 4x2) or [X,Y,Width,Height] each value in percent (example 0,0,100,100 for a full screen tile equal to 1x1). The layout can be made of multiple grids and/or cells separated by a + (example 0,0,50,100+50,0,50,100 which is equal to a 2x1).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the layouts for the Popup mode - one layout per line.&lt;br/&gt;&lt;br/&gt;Valid format is either a grid [XxY] (example 4x2) or [X,Y,Width,Height] each value in percent (example 0,0,100,100 for a full screen tile equal to 1x1). The layout can be made of multiple grids and/or cells separated by a + (example 0,0,50,100+50,0,50,100 which is equal to a 2x1).&lt;/p&gt;&lt;p&gt;You can also use one of special layouts: &lt;span style=&quot; font-family:'Droid Sans Mono','monospace','monospace'; font-size:14px; color:#cccccc;&quot;&gt;SPECIAL_FILL, SPECIAL_SPLIT_VERTICAL and SPECIAL_SPLIT_HORIZONTAL.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="wordWrap">
              <bool>true</bool>
@@ -808,6 +943,22 @@
           </item>
          </layout>
         </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::MinimumExpanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -828,12 +979,21 @@
           <item>
            <widget class="QLabel" name="label_allPopupLayoutsDisclaimer">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;This is just a temporary solution - an UI designer will replace it in the future.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;This was meant to be just a temporary solution - an UI designer was going to replace it (accessed via the &lt;/span&gt;&lt;span style=&quot; font-weight:700; color:#ff0000;&quot;&gt;Ctrl+.&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt; shortcut).&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;However the UI designer is a lot of work, probaly at least 1-2 weeks full time. Sadly I got rent to pay and a 3 year old son to feed and based on my previous project Remember Window Positions, I will not be able to feed us from my contributions to Linux. (After over 3 months full time work I earned $100 total which I apreciate but it's not possible to survive on).&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;I might implement it in the future if the situation changes.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPlainTextEdit" name="kcfg_allPopupLayouts">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="plainText">
              <string/>
             </property>
@@ -842,7 +1002,7 @@
           <item>
            <widget class="QLabel" name="label_allPopupLayoutsExplanation">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set all the layouts for the Popup mode - one layout per line.&lt;br/&gt;&lt;br/&gt;Valid format is either a grid [XxY] (example 4x2) or [X,Y,Width,Height] each value in percent (example 0,0,100,100 for a full screen tile equal to 1x1). The layout can be made of multiple grids and/or cells separated by a + (example 0,0,50,100+50,0,50,100 which is equal to a 2x1).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set all the layouts for the Popup mode - one layout per line.&lt;br/&gt;&lt;br/&gt;Valid format is either a grid [XxY] (example 4x2) or [X,Y,Width,Height] each value in percent (example 0,0,100,100 for a full screen tile equal to 1x1). The layout can be made of multiple grids and/or cells separated by a + (example 0,0,50,100+50,0,50,100 which is equal to a 2x1).&lt;/p&gt;&lt;p&gt;You can also use one of special layouts: &lt;span style=&quot; font-family:'Droid Sans Mono','monospace','monospace'; font-size:14px; color:#cccccc;&quot;&gt;SPECIAL_FILL, SPECIAL_SPLIT_VERTICAL and SPECIAL_SPLIT_HORIZONTAL.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="wordWrap">
              <bool>true</bool>
@@ -851,6 +1011,22 @@
           </item>
          </layout>
         </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::MinimumExpanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -1185,10 +1361,13 @@
          <property name="orientation">
           <enum>Qt::Orientation::Vertical</enum>
          </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::MinimumExpanding</enum>
+         </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>20</width>
-           <height>40</height>
+           <width>0</width>
+           <height>0</height>
           </size>
          </property>
         </spacer>
@@ -1213,7 +1392,7 @@
         <string/>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;To apply changes, please disable (untick then click &amp;quot;Apply&amp;quot;), and re-enable (tick then click &amp;quot;Apply&amp;quot;) the script (limitation of KDE).&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;To apply changes, please disable (untick then click &amp;quot;Apply&amp;quot;), and re-enable (tick then click &amp;quot;Apply&amp;quot;) the script (limitation of KDE). (Reboot works too).&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="scaledContents">
         <bool>false</bool>
@@ -1221,8 +1400,27 @@
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
        <property name="margin">
         <number>4</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_25">
+       <property name="toolTip">
+        <string>https://github.com/rxappdev/RememberWindowPositions</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Designed to work optimally with my other script &lt;a href=&quot;https://github.com/rxappdev/RememberWindowPositions&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;Remember Window Positions&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="openExternalLinks">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

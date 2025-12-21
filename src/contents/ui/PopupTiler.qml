@@ -54,8 +54,58 @@ PlasmaCore.Dialog {
 
             let localCursorPos = Workspace.activeScreen.mapFromGlobal(Workspace.cursorPos);
 
-            positionX = localCursorPos.x - layouts.width / 2;
-            positionY = localCursorPos.y - (layouts.height + popupHint.height + 2) / 2;
+            if (root.config.popupGridAtMouse) {
+                switch (root.config.horizontalAlignment) {
+                    default:
+                        positionX = localCursorPos.x - root.config.gridWidth / 2 - root.config.gridSpacing;
+                        break;
+                    case 1:
+                        positionX = localCursorPos.x - layouts.width / 2;
+                        break;
+                    case 2:
+                        positionX = localCursorPos.x - layouts.width + root.config.gridWidth / 2 + root.config.gridSpacing;
+                        break;
+                }
+
+                switch (root.config.verticalAlignment) {
+                    default:
+                        positionY = localCursorPos.y - root.config.gridHeight / 2 - root.config.gridSpacing;
+                        break;
+                    case 1:
+                        positionY = localCursorPos.y - layouts.height / 2;
+                        break;
+                    case 2:
+                        positionY = localCursorPos.y - layouts.height + root.config.gridHeight / 2 + root.config.gridSpacing;
+                        break;
+                }
+            } else {
+                switch (root.config.horizontalAlignment) {
+                    default:
+                        positionX = 0;
+                        break;
+                    case 1:
+                        positionX = clientArea.width / 2 - layouts.width / 2;
+                        break;
+                    case 2:
+                        positionX = clientArea.width - layouts.width;
+                        break;
+                }
+
+                switch (root.config.verticalAlignment) {
+                    default:
+                        positionY = 0;
+                        break;
+                    case 1:
+                        positionY = clientArea.height / 2 - layouts.height / 2;
+                        break;
+                    case 2:
+                        positionY = clientArea.height - layouts.height;
+                        break;
+                }
+            }
+
+            // positionX = localCursorPos.x - layouts.width / 2;
+            // positionY = localCursorPos.y - (layouts.height + popupHint.height + 2) / 2;
 
             if (positionX < 0) {
                 positionX = 0;
@@ -65,8 +115,10 @@ PlasmaCore.Dialog {
 
             if (positionY < 0) {
                 positionY = 0;
-            } else if (positionY + layouts.height + popupHint.height + 2 > popupTiler.height) {
+            } else if (root.config.showTextHint && positionY + layouts.height + popupHint.height + 2 > popupTiler.height) {
                 positionY = popupTiler.height - layouts.height - popupHint.height - 2;
+            } else if (!root.config.showTextHint && positionY + layouts.height > popupTiler.height) {
+                positionY = popupTiler.height - layouts.height;
             }
         }
     }
@@ -259,6 +311,7 @@ PlasmaCore.Dialog {
             border.color: colors.borderColor
             border.width: 1
             radius: 8
+            visible: root.config.showTextHint
 
             anchors.left: parent.left
             anchors.leftMargin: positionX

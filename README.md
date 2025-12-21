@@ -1,6 +1,6 @@
 # Mouse Tiler
 
-<img align="left" style="margin-right: 20px" width="90" height="90" src="./assets/alpha_icon.png">
+<img align="left" style="margin-right: 20px" width="90" height="90" src="./assets/icon.png">
 
 <pre>
 KDE KWin Script for tiling windows.
@@ -9,7 +9,7 @@ Allows you to tile your windows with minimum effort by moving the mouse just a f
 
 * Compatible with KDE Plasma 6+ (compatibility with previous versions is unknown).
 
-* Tested on Fedora 42 KDE running Wayland and X11 with Plasma version 6.5.2.
+* Tested on Fedora 42 KDE running Wayland and X11 with Plasma version 6.5.2 and 6.5.4.
 
 [![kde-store](https://img.shields.io/badge/KDE%20Store-download-blue?logo=KDE)](https://store.kde.org/p/2334027)
 
@@ -44,12 +44,11 @@ Allows you to tile your windows with minimum effort by moving the mouse just a f
 
 ## <p id="features"></p>Features
 
-### <p id="features_released"></p>Released so far
-
 * Two mouse tiling modes - Grid and Overlay (use one or both)
 * Manual text configuration of the modes
 * Multi-monitor support
-* v0.0.3 - Preview of where the tile will end up
+* Follow system theme or use one of pre-defined color themes
+* Highly customizable, from tile size to grid position (over 20 settings)
 
 ![](./assets/popup_tiler.png)<br>
 **Grid Tiler Default**
@@ -60,22 +59,22 @@ Allows you to tile your windows with minimum effort by moving the mouse just a f
 ![](./assets/overlay_tiler.png)<br>
 **Overlay Tiler**
 
-### <p id="features_planned"></p>Planned for v1.0.0 (and beyond)
+### <p id="features_planned"></p>Planned for the future (maybe)
 
-* GUI configuration
-    * Default layout suggestions based on screen ratio (such as 16:9, 32:9, 4:3 - not sure which ones will be implemented yet)
-* Define better default script colors - currently they are more or less just hex values I randomly typed towards blueish theme
-* Use current theme colors instead (with option to use the default script colors - per user choice)
-* Implement all the settings (and more) currently disabled in the configuration dialog
-* Window spacing/margins
-* Grid Tiler mouse position (top / center / left / right)
+The text configuration was meant to be just a temporary solution - an GUI designer was going to replace it (accessed via the Ctrl+. shortcut).
+However the GUI designer is a lot of work, probaly at least 1-2 weeks full time. Sadly I got rent to pay and a 3 year old son to feed and based on my previous project Remember Window Positions, I will not be able to feed us from my contributions to Linux. (After over 3 months full time work I earned $100 total which I apreciate but it's not possible to survive on).
+I might implement all/some of the features listed here in the future if the situation changes - but for now I need to do actual work that pays.
+
+* Optional automatic tiling (when a new window opens, follow a set of rules to tile it such as 1st window: maximize, 2nd window: split horizontally and place on right...)
+* GUI layout designer
+* GUI popup tiler configuration
+* GUI overlay tiler configuration
+* Default layout based on screen type (such as Standar - Wide - Ultra Wide - Tilted)
+* Theme color selection with preview of how the tiler looks
 
 ### Feature requests to investigate
 
-* Option to enable automatic tiling
-* Add additional titlebar button ? - System Settings > Colours & Themes > Window Decorations > ... > Configure Titlebar Buttons...
-* Hide overlay/popup grid if mouse has not moved for X time
-* Restore previous window size when dragging starts
+* Add additional titlebar button ? - System Settings > Colours & Themes > Window Decorations > ... > Configure Titlebar Buttons... (currently I do not believe this is possible to do from a KWin Script, but if anyone knows something I don't, please let me know)
 
 ## <p id="how"></p>How it works
 
@@ -160,7 +159,7 @@ If the mouse tiler configuration contains corrupted data, it can be manually del
 ## <p id="compatibility"></p>Compatibility ##
 
 Compatible with:
-* <a href="https://github.com/rxappdev/RememberWindowPositions">Remember Window Positions</a> - use the Mouse Tiler to move your windows into position, and restore them next time you start the application. Ultimate combo.
+* <a href="https://github.com/rxappdev/RememberWindowPositions">Remember Window Positions</a> - use the Mouse Tiler to move your windows into position, and restore them next time you start the application. Ultimate combo. (Originally Remember Window Positions was meant to be part of the Mouse Tiler).
 
 ## <p id="getintouch"></p>Get in touch ##
 

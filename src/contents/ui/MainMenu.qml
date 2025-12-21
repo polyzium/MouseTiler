@@ -128,7 +128,7 @@ ApplicationWindow {
                     Label {
                         Layout.fillWidth: true
                         horizontalAlignment: Text.AlignHCenter
-                        text: "Not implemented yet"
+                        text: "This was meant to be the UI designer. However it is a lot of work to implement it, probaly at least 1-2 weeks full time. Sadly I got rent to pay and a 3 year old son to feed and based on my previous project Remember Window Positions, I will not be able to feed us from my contributions to Linux. (After over 3 months full time work I earned $100 total which I apreciate but it's not possible to survive on). I might implement it in the future if the situation changes."
                         wrapMode: Text.WordWrap
                     }
 

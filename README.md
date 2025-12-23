@@ -80,6 +80,7 @@ I might implement all/some of the features listed here in the future if the situ
 ### Feature requests to investigate
 
 * Add additional titlebar button ? - System Settings > Colours & Themes > Window Decorations > ... > Configure Titlebar Buttons... (currently I do not believe this is possible to do from a KWin Script, but if anyone knows something I don't, please let me know)
+* Re-investigate single key shortcuts (Alt / Shift / Ctrl)
 
 ## <p id="how"></p>How it works
 

@@ -56,6 +56,9 @@
         <entry name="verticalAlignment" type="Int">
             <default>1</default>
         </entry>
+        <entry name="revealMargin" type="Int">
+            <default>200</default>
+        </entry>
         <entry name="gridColumns" type="Int">
             <default>3</default>
         </entry>

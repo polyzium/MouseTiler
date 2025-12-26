@@ -584,7 +584,7 @@
           <item>
            <widget class="QLabel" name="label_24">
             <property name="text">
-             <string>Determines where the Popup Grid will be displayed. You can chose to show it below mouse pointer or at a fixed screen position.</string>
+             <string>Determines where the Popup Grid will be displayed. You can chose to show it below mouse pointer, at a fixed screen position or at fixed screen position but hidden. When hidden, drag the window to the designated position to reveal the tiler.</string>
             </property>
             <property name="wordWrap">
              <bool>true</bool>
@@ -630,6 +630,11 @@
               <item>
                <property name="text">
                 <string>At fixed screen position</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>At fixed screen position - hidden (drag window to the specified location to reveal the tiler)</string>
                </property>
               </item>
              </widget>
@@ -682,6 +687,26 @@
                 <string>Bottom</string>
                </property>
               </item>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_43">
+              <property name="text">
+               <string>Reveal hidden margin</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QSpinBox" name="kcfg_revealMargin">
+              <property name="suffix">
+               <string> px - only applies when using the &quot;Show&quot; &quot;At fixed screen position - hidden&quot; option above</string>
+              </property>
+              <property name="maximum">
+               <number>2000</number>
+              </property>
+              <property name="value">
+               <number>100</number>
+              </property>
              </widget>
             </item>
            </layout>

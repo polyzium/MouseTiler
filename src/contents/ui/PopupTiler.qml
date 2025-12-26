@@ -23,6 +23,8 @@ PlasmaCore.Dialog {
     property var popupDropHintWidth: 0
     property var popupDropHintHeight: 0
     property bool sizeEstablished: false
+    property var revealBox: null
+    property bool revealed: false
 
     width: clientArea.width
     height: clientArea.height
@@ -60,7 +62,7 @@ PlasmaCore.Dialog {
 
             let localCursorPos = Workspace.activeScreen.mapFromGlobal(Workspace.cursorPos);
 
-            if (root.config.popupGridAtMouse) {
+            if (root.config.popupGridAt == 0) {
                 switch (root.config.horizontalAlignment) {
                     default:
                         positionX = localCursorPos.x - root.config.gridWidth / 2 - root.config.gridSpacing;
@@ -84,29 +86,56 @@ PlasmaCore.Dialog {
                         positionY = localCursorPos.y - layouts.height + root.config.gridHeight / 2 + root.config.gridSpacing;
                         break;
                 }
+                revealBox = null;
+                revealed = true;
             } else {
+                var triggerLeft = 0;
+                let triggerRight = 0;
+                let triggerTop = 0;
+                let triggerBottom = 0;
                 switch (root.config.horizontalAlignment) {
                     default:
                         positionX = 0;
+                        triggerLeft = positionX;
+                        triggerRight = positionX + layouts.width + config.revealMargin;
                         break;
                     case 1:
                         positionX = clientArea.width / 2 - layouts.width / 2;
+                        triggerLeft = positionX - config.revealMargin;
+                        triggerRight = positionX + layouts.width + config.revealMargin;
                         break;
                     case 2:
                         positionX = clientArea.width - layouts.width;
+                        triggerLeft = positionX - config.revealMargin;
+                        triggerRight = positionX + layouts.width;
                         break;
                 }
 
                 switch (root.config.verticalAlignment) {
                     default:
                         positionY = 0;
+                        triggerTop = positionY;
+                        triggerBottom = positionY + layouts.height + config.revealMargin;
                         break;
                     case 1:
                         positionY = clientArea.height / 2 - layouts.height / 2;
+                        triggerTop = positionY - config.revealMargin;
+                        triggerBottom = positionY + layouts.height + config.revealMargin;
                         break;
                     case 2:
                         positionY = clientArea.height - layouts.height;
+                        triggerTop = positionY - config.revealMargin;
+                        triggerBottom = positionY + layouts.height;
                         break;
+                }
+                if (root.config.popupGridAt == 2) {
+                    let leftTop = Workspace.activeScreen.mapToGlobal(Qt.point(triggerLeft, triggerTop));
+                    let rightBottom = Workspace.activeScreen.mapToGlobal(Qt.point(triggerRight, triggerBottom));
+                    revealBox = { left: leftTop.x, right: rightBottom.x, top: leftTop.y, bottom: rightBottom.y };
+                    revealed = isRevealed();
+                } else {
+                    revealBox = null;
+                    revealed = true;
                 }
             }
 
@@ -193,8 +222,16 @@ PlasmaCore.Dialog {
         }
     }
 
+    function isRevealed() {
+        if (revealBox == null) return true;
+        let x = Workspace.cursorPos.x;
+        let y = Workspace.cursorPos.y;
+        return revealBox.left <= x && revealBox.right >= x && revealBox.top <= y && revealBox.bottom >= y;
+    }
+
     Item {
         anchors.fill: parent
+        visible: revealed
 
         SequentialAnimation {
             id: showPopupTilerAnimation
@@ -384,6 +421,8 @@ PlasmaCore.Dialog {
                     }
                 }
                 updateScreen(forceUpdate);
+
+                revealed = isRevealed();
 
                 let x = Workspace.cursorPos.x;
                 let y = Workspace.cursorPos.y;

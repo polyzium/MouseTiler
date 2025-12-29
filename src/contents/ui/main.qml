@@ -20,7 +20,7 @@ Item {
     property bool moved: false
     property bool usePopupTiler: false
     property var currentTiler: popupTiler
-    property var currentMoveWindow: null
+    property var currentlyMovedWindow: null
 
     function log(string) {
         if (!debugLogs) return;
@@ -103,11 +103,13 @@ SPECIAL_FILL-Fill
             usePopupTilerByDefault: KWin.readConfig("defaultTiler", 0) == 0,
             rememberTiler: KWin.readConfig("rememberTiler", false),
             restoreSize: KWin.readConfig("restoreSize", false),
+            tilerVisibility: KWin.readConfig("tilerVisibility", 0),
+            revealMargin: KWin.readConfig("revealMargin", 200),
+            hideWindowWhileMoving: KWin.readConfig("hideWindowWhileMoving", false),
             theme: KWin.readConfig("theme", 0),
             edgeMargin: KWin.readConfig("tileMargin", 0),
             showOverlayTextHint: KWin.readConfig("showOverlayTextHint", true),
             overlay: convertOverlayLayout(KWin.readConfig("overlayLayout", defaultOverlayLayout), defaultOverlayLayout),
-            overlayVisibility: KWin.readConfig("overlayVisibility", 0),
             overlayScreenEdgeMargin: KWin.readConfig("overlayScreenEdgeMargin", 0),
             overlayPollingRate: KWin.readConfig("overlayPollingRate", 100),
             rememberAllLayouts: KWin.readConfig("rememberAllLayouts", false),
@@ -116,8 +118,6 @@ SPECIAL_FILL-Fill
             popupGridAt: KWin.readConfig("popupGridAt", 0),
             horizontalAlignment: KWin.readConfig("horizontalAlignment", 1),
             verticalAlignment: KWin.readConfig("verticalAlignment", 1),
-            popupVisibility: KWin.readConfig("popupVisibility", 0),
-            revealMargin: KWin.readConfig("revealMargin", 200),
             gridColumns: KWin.readConfig("gridColumns", 3),
             gridSpacing: KWin.readConfig("gridSpacing", 10),
             gridWidth: KWin.readConfig("gridWidth", 130),
@@ -194,7 +194,7 @@ SPECIAL_FILL-Fill
                         if (coordinates[0].startsWith('SPECIAL_')) {
                             switch (coordinates[0]) {
                                 case 'SPECIAL_FILL':
-                                    layout.tiles.push({x: 0, y: 0, w: 75, h: 100, t: "« &nbsp; FILL &nbsp; »", hint: "Fill largest empty space (if any available)"});
+                                    layout.tiles.push({x: 0, y: 0, w: 75, h: 100, t: "«&nbsp; FILL &nbsp;»", hint: "Fill largest empty space (if any available)"});
                                     layout.tiles.push({x: 75, y: 0, w: 25, h: 100, t: "« »", d: false, hint: "Fill smallest empty space (if any available)"});
                                     layout.special = 'SPECIAL_FILL';
                                     isValid = true;
@@ -312,9 +312,9 @@ SPECIAL_FILL-Fill
                     delete client.mt_originalSize;
                 }
                 moving = true;
-                currentMoveWindow = client;
+                currentlyMovedWindow = client;
                 showTiler(true);
-                if (currentTiler == popupTiler && config.popupVisibility == 1 || currentTiler == overlayTiler && config.overlayVisibility == 1) {
+                if (config.tilerVisibility == 1) {
                     autoHideTimer.startAutoHideTimer();
                 }
             } else if (client.resize && client.mt_originalSize) {
@@ -373,7 +373,8 @@ SPECIAL_FILL-Fill
             }
             moving = false;
             moved = false;
-            currentMoveWindow = null;
+            currentlyMovedWindow.opacity = 1;
+            currentlyMovedWindow = null;
         }
     }
 
@@ -676,19 +677,25 @@ SPECIAL_FILL-Fill
     function hideTiler() {
         if (currentTiler.visible) {
             currentTiler.visible = false;
+            if (config.hideWindowWhileMoving) {
+                currentlyMovedWindow.opacity = 1;
+            }
             return true;
         }
         return false;
     }
 
     function showTiler(animate, force = false) {
-        let show = force || currentTiler == popupTiler && config.popupVisibility != 2 || currentTiler == overlayTiler && config.overlayVisibility != 2;
+        let show = force || config.tilerVisibility != 2;
         if (show) {
             currentTiler.reset();
             if (!config.rememberAllLayouts && currentTiler == popupTiler) {
                 currentTiler.resetShowAll();
             }
             currentTiler.visible = true;
+            if (config.hideWindowWhileMoving) {
+                currentlyMovedWindow.opacity = 0;
+            }
             currentTiler.updateScreen();
             if (animate) {
                 currentTiler.startAnimations();

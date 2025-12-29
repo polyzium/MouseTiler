@@ -129,7 +129,7 @@ PlasmaCore.Dialog {
                 positionY = popupTiler.height - layouts.height;
             }
 
-            if (root.config.popupVisibility == 3) {
+            if (root.config.tilerVisibility == 3) {
                 let triggerLeft = Math.max(positionX - config.revealMargin, 0);
                 let triggerRight = Math.min(positionX + layouts.width + config.revealMargin, popupTiler.width);
                 let triggerTop = Math.max(positionY - config.revealMargin, 0);
@@ -137,10 +137,10 @@ PlasmaCore.Dialog {
                 let leftTop = Workspace.activeScreen.mapToGlobal(Qt.point(triggerLeft, triggerTop));
                 let rightBottom = Workspace.activeScreen.mapToGlobal(Qt.point(triggerRight, triggerBottom));
                 revealBox = { left: leftTop.x, right: rightBottom.x, top: leftTop.y, bottom: rightBottom.y };
-                revealed = isRevealed();
+                updateRevealed(true);
             } else {
                 revealBox = null;
-                revealed = true;
+                updateRevealed(true);
             }
         }
     }
@@ -174,18 +174,18 @@ PlasmaCore.Dialog {
             let geometry;
             switch (special) {
                 case 'SPECIAL_FILL':
-                    if (root.currentMoveWindow != null) {
-                        geometry = root.getFillGeometry(root.currentMoveWindow, activeTileIndex == 0);
+                    if (root.currentlyMovedWindow != null) {
+                        geometry = root.getFillGeometry(root.currentlyMovedWindow, activeTileIndex == 0);
                     }
                     break;
                 case 'SPECIAL_SPLIT_VERTICAL':
-                    if (root.currentMoveWindow != null) {
-                        geometry = splitAndMoveSplitted(root.currentMoveWindow, true, activeTileIndex == 0, false);
+                    if (root.currentlyMovedWindow != null) {
+                        geometry = splitAndMoveSplitted(root.currentlyMovedWindow, true, activeTileIndex == 0, false);
                     }
                     break;
                 case 'SPECIAL_SPLIT_HORIZONTAL':
-                    if (root.currentMoveWindow != null) {
-                        geometry = splitAndMoveSplitted(root.currentMoveWindow, false, activeTileIndex == 0, false);
+                    if (root.currentlyMovedWindow != null) {
+                        geometry = splitAndMoveSplitted(root.currentlyMovedWindow, false, activeTileIndex == 0, false);
                     }
                     break;
                 default:
@@ -209,11 +209,26 @@ PlasmaCore.Dialog {
         }
     }
 
-    function isRevealed() {
-        if (revealBox == null) return true;
-        let x = Workspace.cursorPos.x;
-        let y = Workspace.cursorPos.y;
-        return revealBox.left <= x && revealBox.right >= x && revealBox.top <= y && revealBox.bottom >= y;
+    function updateRevealed(forceUpdate = false) {
+        var updatedRevealed;
+        if (revealBox == null) {
+            updatedRevealed = true;
+        } else {
+            let x = Workspace.cursorPos.x;
+            let y = Workspace.cursorPos.y;
+            updatedRevealed = revealBox.left <= x && revealBox.right >= x && revealBox.top <= y && revealBox.bottom >= y;
+        }
+
+        if (forceUpdate || updatedRevealed != revealed) {
+            revealed = updatedRevealed;
+            if (popupTiler.visible && root.config.hideWindowWhileMoving && root.currentlyMovedWindow != null) {
+                if (revealed) {
+                    root.currentlyMovedWindow.opacity = 0;
+                } else {
+                    root.currentlyMovedWindow.opacity = 1;
+                }
+            }
+        }
     }
 
     Item {
@@ -409,7 +424,7 @@ PlasmaCore.Dialog {
                 }
                 updateScreen(forceUpdate);
 
-                revealed = isRevealed();
+                updateRevealed();
 
                 let x = Workspace.cursorPos.x;
                 let y = Workspace.cursorPos.y;

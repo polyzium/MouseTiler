@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1060</width>
-    <height>911</height>
+    <height>769</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -115,6 +115,102 @@
            <widget class="QCheckBox" name="kcfg_restoreSize">
             <property name="text">
              <string>Restore previous window size when starting to move a window.</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_11">
+         <property name="title">
+          <string>Visibility</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_15">
+          <item>
+           <widget class="QLabel" name="label_22">
+            <property name="text">
+             <string>Determines when the default tiler is visible. Previous visibility is kept when changing modes using the keyboard shortcut.</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QFormLayout" name="formLayout_4">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_23">
+              <property name="text">
+               <string>Default tiler visibility</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="kcfg_tilerVisibility">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <item>
+               <property name="text">
+                <string>Always visible</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Only visible if window is dragged right away (otherwise will remain hidden)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Hidden until toggled on by shortcut (Meta+Space)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Hidden until mouse is near tiler (only works for Popup Grid mode)</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_48">
+              <property name="text">
+               <string>Additional reveal margin</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSpinBox" name="kcfg_revealMargin">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="suffix">
+               <string> px - only applies when using the &quot;Hidden until mouse is near tiler&quot; option above</string>
+              </property>
+              <property name="maximum">
+               <number>2000</number>
+              </property>
+              <property name="singleStep">
+               <number>10</number>
+              </property>
+              <property name="value">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="kcfg_hideWindowWhileMoving">
+            <property name="text">
+             <string>Hide window while moving it. The window will be visible as normal when the tiler is not visible due to any of the visibility settings.</string>
             </property>
            </widget>
           </item>
@@ -284,6 +380,7 @@
       <zorder>groupBox_defaultTiler</zorder>
       <zorder>groupBox</zorder>
       <zorder>groupBox_6</zorder>
+      <zorder>groupBox_11</zorder>
      </widget>
      <widget class="QWidget" name="tab_mulltiWindowRestore">
       <attribute name="icon">
@@ -333,58 +430,6 @@
           </item>
           <item>
            <widget class="QLineEdit" name="kcfg_overlayLayout"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_10">
-         <property name="title">
-          <string>Visibility</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_19">
-          <item>
-           <widget class="QLabel" name="label_46">
-            <property name="text">
-             <string>Determines when the Overlay tiler is visible. Previous visibility is kept when changing modes using the keyboard shortcut.</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QFormLayout" name="formLayout_7">
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_47">
-              <property name="text">
-               <string>Overlay visibility</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QComboBox" name="kcfg_overlayVisibility">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <item>
-               <property name="text">
-                <string>Always visible</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Only visible if window is dragged right away (otherwise will remain hidden)</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Hidden until toggled on by shortcut (Meta+Space)</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-           </layout>
           </item>
          </layout>
         </widget>
@@ -665,95 +710,6 @@
                 <string>Bottom</string>
                </property>
               </item>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_9">
-         <property name="title">
-          <string>Visibility</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_18">
-          <item>
-           <widget class="QLabel" name="label_45">
-            <property name="text">
-             <string>Determines when the Popup Grid tiler is visible. Previous visibility is kept when changing modes using the keyboard shortcut.</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QFormLayout" name="formLayout_6">
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_44">
-              <property name="text">
-               <string>Popup Grid visibility</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QComboBox" name="kcfg_popupVisibility">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <item>
-               <property name="text">
-                <string>Always visible</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Only visible if window is dragged right away (otherwise will remain hidden)</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Hidden until toggled on by shortcut (Meta+Space)</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Hidden until mouse is near tiler</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QSpinBox" name="kcfg_revealMargin">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="suffix">
-               <string> px - only applies when using the &quot;Hidden until mouse is near tiler&quot; option above</string>
-              </property>
-              <property name="minimum">
-               <number>0</number>
-              </property>
-              <property name="maximum">
-               <number>2000</number>
-              </property>
-              <property name="singleStep">
-               <number>10</number>
-              </property>
-              <property name="value">
-               <number>100</number>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_43">
-              <property name="text">
-               <string>Additional reveal margin</string>
-              </property>
              </widget>
             </item>
            </layout>

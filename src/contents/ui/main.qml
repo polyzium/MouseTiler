@@ -105,7 +105,7 @@ SPECIAL_FILL-Fill
             restoreSize: KWin.readConfig("restoreSize", false),
             tilerVisibility: KWin.readConfig("tilerVisibility", 0),
             revealMargin: KWin.readConfig("revealMargin", 200),
-            hideWindowWhileMoving: KWin.readConfig("hideWindowWhileMoving", false),
+            windowVisibility: KWin.readConfig("windowVisibility", 0),
             theme: KWin.readConfig("theme", 0),
             edgeMargin: KWin.readConfig("tileMargin", 0),
             showOverlayTextHint: KWin.readConfig("showOverlayTextHint", true),
@@ -539,6 +539,43 @@ SPECIAL_FILL-Fill
         }
     }
 
+    function updateWindowVisibility() {
+        if (currentlyMovedWindow == null) return;
+        if (!currentTiler.visible) {
+            currentlyMovedWindow.opacity = 1;
+        } else {
+            switch (config.windowVisibility) {
+                default:
+                    currentlyMovedWindow.opacity = 1;
+                    break;
+                case 1:
+                    if (currentTiler.visible) {
+                        if (currentTiler == popupTiler) {
+                            if (popupTiler.revealed) {
+                                currentlyMovedWindow.opacity = 0;
+                            } else {
+                                currentlyMovedWindow.opacity = 1;
+                            }
+                        } else {
+                            currentlyMovedWindow.opacity = 0;
+                        }
+                    }
+                    break;
+                case 2:
+                    if (currentTiler == popupTiler) {
+                        if (popupTiler.currentlyHovered) {
+                            currentlyMovedWindow.opacity = 0;
+                        } else {
+                            currentlyMovedWindow.opacity = 1;
+                        }
+                    } else {
+                        currentlyMovedWindow.opacity = 0;
+                    }
+                    break;
+            }
+        }
+    }
+
     Timer {
         id: autoHideTimer
 
@@ -677,9 +714,7 @@ SPECIAL_FILL-Fill
     function hideTiler() {
         if (currentTiler.visible) {
             currentTiler.visible = false;
-            if (config.hideWindowWhileMoving) {
-                currentlyMovedWindow.opacity = 1;
-            }
+            updateWindowVisibility();
             return true;
         }
         return false;
@@ -693,10 +728,8 @@ SPECIAL_FILL-Fill
                 currentTiler.resetShowAll();
             }
             currentTiler.visible = true;
-            if (config.hideWindowWhileMoving) {
-                currentlyMovedWindow.opacity = 0;
-            }
             currentTiler.updateScreen();
+            updateWindowVisibility();
             if (animate) {
                 currentTiler.startAnimations();
             }

@@ -25,6 +25,7 @@ PlasmaCore.Dialog {
     property bool sizeEstablished: false
     property var revealBox: null
     property bool revealed: false
+    property bool currentlyHovered: false
 
     width: clientArea.width
     height: clientArea.height
@@ -221,13 +222,7 @@ PlasmaCore.Dialog {
 
         if (forceUpdate || updatedRevealed != revealed) {
             revealed = updatedRevealed;
-            if (popupTiler.visible && root.config.hideWindowWhileMoving && root.currentlyMovedWindow != null) {
-                if (revealed) {
-                    root.currentlyMovedWindow.opacity = 0;
-                } else {
-                    root.currentlyMovedWindow.opacity = 1;
-                }
-            }
+            root.updateWindowVisibility();
         }
     }
 
@@ -430,6 +425,20 @@ PlasmaCore.Dialog {
                 let y = Workspace.cursorPos.y;
                 let layoutIndex = -1;
                 let tileIndex = -1;
+
+                if (root.config.windowVisibility == 2) {
+                    var updatedHovered;
+                    let layoutsPosition = layouts.mapToGlobal(Qt.point(0, 0));
+                    if (layoutsPosition.x <= x && layoutsPosition.x + layouts.width >= x && layoutsPosition.y <= y && layoutsPosition.y + layouts.height >= y) {
+                        updatedHovered = true;
+                    } else {
+                        updatedHovered = false;
+                    }
+                    if (updatedHovered != currentlyHovered) {
+                        currentlyHovered = updatedHovered;
+                        root.updateWindowVisibility();
+                    }
+                }
 
                 for (let i = 0; i < layoutRepeater.count; i++) {
                     let currentLayout = layoutRepeater.itemAt(i);

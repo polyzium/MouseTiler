@@ -541,7 +541,7 @@ SPECIAL_FILL-Fill
 
     function updateWindowVisibility() {
         if (currentlyMovedWindow == null) return;
-        if (!currentTiler.visible) {
+        if (!currentTiler.visible || (currentTiler.opacity != 1 && config.tilerVisibility == 1)) {
             currentlyMovedWindow.opacity = 1;
         } else {
             switch (config.windowVisibility) {
@@ -729,10 +729,10 @@ SPECIAL_FILL-Fill
             }
             currentTiler.visible = true;
             currentTiler.updateScreen();
-            updateWindowVisibility();
             if (animate) {
                 currentTiler.startAnimations();
             }
+            updateWindowVisibility(); // Must run after startAnimation so that opacity is properly set to 0 or 1
         }
     }
 

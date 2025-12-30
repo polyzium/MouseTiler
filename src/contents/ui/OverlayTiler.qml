@@ -119,6 +119,10 @@ PlasmaCore.Dialog {
                 to: 1;
                 duration: 1;
             }
+
+            onFinished: {
+                root.updateWindowVisibility();
+            }
         }
 
         Colors {

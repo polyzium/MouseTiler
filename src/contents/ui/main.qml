@@ -303,28 +303,43 @@ SPECIAL_FILL-Fill
                             }
                         }
                     } else if (coordinates.length == 4) {
-                        // x,y,w,h
+                        // x,y,w,h with optional anchor prefixes (L/C/R for x, T/C/B for y)
                         let x, pxX, y, pxY, w, pxW, h, pxH;
+                        let anchorX = 'L'; // Default: Left
+                        let anchorY = 'T'; // Default: Top
                         isValid = true;
-                        if (coordinates[0].endsWith('px')) {
-                            pxX = parseInt(coordinates[0]);
+                        
+                        let xCoord = coordinates[0];
+                        // Left/Center/Right
+                        if (xCoord.startsWith('L') || xCoord.startsWith('C') || xCoord.startsWith('R')) {
+                            anchorX = xCoord.charAt(0);
+                            xCoord = xCoord.substring(1);
+                        }
+                        if (xCoord.endsWith('px')) {
+                            pxX = parseInt(xCoord);
                             if (Number.isNaN(pxX)) {
                                 isValid = false;
                             }
                         } else {
-                            x = parseInt(coordinates[0]);
+                            x = parseInt(xCoord);
                             if (Number.isNaN(x)) {
                                 isValid = false;
                             }
                         }
 
-                        if (coordinates[1].endsWith('px')) {
-                            pxY = parseInt(coordinates[1]);
+                        let yCoord = coordinates[1];
+                        // Top/Center/Bottom
+                        if (yCoord.startsWith('T') || yCoord.startsWith('C') || yCoord.startsWith('B')) {
+                            anchorY = yCoord.charAt(0);
+                            yCoord = yCoord.substring(1);
+                        }
+                        if (yCoord.endsWith('px')) {
+                            pxY = parseInt(yCoord);
                             if (Number.isNaN(pxY)) {
                                 isValid = false;
                             }
                         } else {
-                            y = parseInt(coordinates[1]);
+                            y = parseInt(yCoord);
                             if (Number.isNaN(y)) {
                                 isValid = false;
                             }
@@ -355,7 +370,7 @@ SPECIAL_FILL-Fill
                         }
 
                         if (isValid) {
-                            layout.tiles.push({x: x, pxX: pxX, y: y, pxY: pxY, w: w, pxW: pxW, h: h, pxH: pxH});
+                            layout.tiles.push({x: x, pxX: pxX, y: y, pxY: pxY, w: w, pxW: pxW, h: h, pxH: pxH, anchorX: anchorX, anchorY: anchorY});
                         } else {
                             logE('Invalid user layout: ' + tiles[tileIndex]);
                         }

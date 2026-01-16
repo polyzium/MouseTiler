@@ -1077,8 +1077,22 @@
           <item>
            <widget class="QLabel" name="label_popupLayoutExplanation">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the layouts for the Popup mode - one layout per line.&lt;br/&gt;&lt;br/&gt;Valid format is either a grid [XxY] (example 4x2) or [X,Y,Width,Height]. Any of the values can be in percent (recommended) or pixels (using px suffix - not recommended).&lt;br/&gt;&lt;br/&gt;Example 0,0,100,100 for a full screen tile equal to 1x1 or 20,10,400px,200px for a 400 pixel wide, 200 pixel high tile placed at 20% screen width and 10% screen height.
-&lt;br/&gt;&lt;br/&gt; The layout can be made of multiple grids and/or cells separated by a + (example 0,0,50,100+50,0,50,100 which is equal to a 2x1).&lt;br/&gt;&lt;br/&gt;You can also use one of special layouts: SPECIAL_FILL, SPECIAL_SPLIT_VERTICAL, SPECIAL_SPLIT_HORIZONTAL, SPECIAL_MAXIMIZE, SPECIAL_MINIMIZE, SPECIAL_FULLSCREEN, SPECIAL_KEEP_ABOVE, SPECIAL_KEEP_BELOW, SPECIAL_NO_TITLEBAR_AND_FRAME, SPECIAL_CLOSE and SPECIAL_EMPTY.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>Set the layouts for the Popup mode - one layout per line.
+
+Valid format is either a grid [XxY] (example 4x2) or [X,Y,Width,Height]. Any of the values can be in percent (recommended) or pixels (using px suffix - not recommended).
+
+You can optionally prefix X with L/C/R (Left/Center/Right) and Y with T/C/B (Top/Center/Bottom) to control which part of the window is positioned. Default is L (Left) and T (Top).
+
+Examples:
+- 0,0,100,100 - Full screen tile (top-left corner at 0,0)
+- C50,C50,50,50 - Window center at screen center, resized to 50% screen width and 50% screen height
+- C50,C50,1920px,1080px - Window center at screen center, resized to 1920x1080 (useful for webdevs with ultrawides)
+- R100,B100,50,50 - Window bottom-right at screen bottom-right, resized to 50% screen width and 50% screen height
+- 20,10,400px,200px - 400x200px tile at 20% width, 10% height
+
+The layout can be made of multiple grids and/or cells separated by a + (example 0,0,50,100+50,0,50,100 which is equal to a 2x1).
+
+You can also use one of special layouts: SPECIAL_FILL, SPECIAL_SPLIT_VERTICAL, SPECIAL_SPLIT_HORIZONTAL, SPECIAL_MAXIMIZE, SPECIAL_MINIMIZE, SPECIAL_FULLSCREEN, SPECIAL_KEEP_ABOVE, SPECIAL_KEEP_BELOW, SPECIAL_NO_TITLEBAR_AND_FRAME, SPECIAL_CLOSE and SPECIAL_EMPTY.</string>
             </property>
             <property name="wordWrap">
              <bool>true</bool>
@@ -1130,8 +1144,22 @@
           <item>
            <widget class="QLabel" name="label_allPopupLayoutsExplanation">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set all the layouts for the Popup mode - one layout per line.&lt;br/&gt;&lt;br/&gt;Valid format is either a grid [XxY] (example 4x2) or [X,Y,Width,Height]. Any of the values can be in percent (recommended) or pixels (using px suffix - not recommended).&lt;br/&gt;&lt;br/&gt;Example 0,0,100,100 for a full screen tile equal to 1x1 or 20,10,400px,200px for a 400 pixel wide, 200 pixel high tile placed at 20% screen width and 10% screen height.
-&lt;br/&gt;&lt;br/&gt; The layout can be made of multiple grids and/or cells separated by a + (example 0,0,50,100+50,0,50,100 which is equal to a 2x1).&lt;br/&gt;&lt;br/&gt;You can also use one of special layouts: SPECIAL_FILL, SPECIAL_SPLIT_VERTICAL, SPECIAL_SPLIT_HORIZONTAL, SPECIAL_MAXIMIZE, SPECIAL_MINIMIZE, SPECIAL_FULLSCREEN, SPECIAL_KEEP_ABOVE, SPECIAL_KEEP_BELOW, SPECIAL_NO_TITLEBAR_AND_FRAME, SPECIAL_CLOSE and SPECIAL_EMPTY.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>Set all the layouts for the Popup mode - one layout per line.
+
+Valid format is either a grid [XxY] (example 4x2) or [X,Y,Width,Height]. Any of the values can be in percent (recommended) or pixels (using px suffix - not recommended).
+
+You can optionally prefix X with L/C/R (Left/Center/Right) and Y with T/C/B (Top/Center/Bottom) to control which part of the window is positioned. Default is L (Left) and T (Top).
+
+Examples:
+- 0,0,100,100 - Full screen tile (top-left corner at 0,0)
+- C50,C50,50,50 - Window center at screen center, resized to 50% screen width and 50% screen height
+- C50,C50,1920px,1080px - Window center at screen center, resized to 1920x1080 (useful for webdevs with ultrawides)
+- R100,B100,50,50 - Window bottom-right at screen bottom-right, resized to 50% screen width and 50% screen height
+- 20,10,400px,200px - 400x200px tile at 20% width, 10% height
+
+The layout can be made of multiple grids and/or cells separated by a + (example 0,0,50,100+50,0,50,100 which is equal to a 2x1).
+
+You can also use one of special layouts: SPECIAL_FILL, SPECIAL_SPLIT_VERTICAL, SPECIAL_SPLIT_HORIZONTAL, SPECIAL_MAXIMIZE, SPECIAL_MINIMIZE, SPECIAL_FULLSCREEN, SPECIAL_KEEP_ABOVE, SPECIAL_KEEP_BELOW, SPECIAL_NO_TITLEBAR_AND_FRAME, SPECIAL_CLOSE and SPECIAL_EMPTY.</string>
             </property>
             <property name="wordWrap">
              <bool>true</bool>

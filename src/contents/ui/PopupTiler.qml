@@ -154,11 +154,32 @@ PlasmaCore.Dialog {
             };
         } else if (activeLayoutIndex >= 0 && activeTileIndex >= 0) {
             let layout = layoutRepeater.model[activeLayoutIndex].tiles[activeTileIndex];
+            let width = layout.w == undefined ? layout.pxW : layout.w / 100 * clientArea.width;
+            let height = layout.h == undefined ? layout.pxH : layout.h / 100 * clientArea.height;
+            let x = clientArea.x + (layout.x == undefined ? layout.pxX : layout.x / 100 * clientArea.width);
+            let y = clientArea.y + (layout.y == undefined ? layout.pxY : layout.y / 100 * clientArea.height);
+            
+            // Apply anchor
+            let anchorX = layout.anchorX || 'L';
+            let anchorY = layout.anchorY || 'T';
+            
+            if (anchorX === 'C') {
+                x -= width / 2;
+            } else if (anchorX === 'R') {
+                x -= width;
+            }
+            
+            if (anchorY === 'C') {
+                y -= height / 2;
+            } else if (anchorY === 'B') {
+                y -= height;
+            }
+            
             return {
-                x: clientArea.x + (layout.x == undefined ? layout.pxX : layout.x / 100 * clientArea.width),
-                y: clientArea.y + (layout.y == undefined ? layout.pxY : layout.y / 100 * clientArea.height),
-                width: layout.w == undefined ? layout.pxW : layout.w / 100 * clientArea.width,
-                height: layout.h == undefined ? layout.pxH : layout.h / 100 * clientArea.height
+                x: x,
+                y: y,
+                width: width,
+                height: height
             };
         }
         return null;
@@ -198,10 +219,31 @@ PlasmaCore.Dialog {
                     break;
                 default:
                     let layout = layoutRepeater.model[activeLayoutIndex].tiles[activeTileIndex];
-                    popupDropHintX = layout.x == undefined ? layout.pxX : layout.x / 100 * clientArea.width;
-                    popupDropHintY = layout.y == undefined ? layout.pxY : layout.y / 100 * clientArea.height;
-                    popupDropHintWidth = layout.w == undefined ? layout.pxW : layout.w / 100 * clientArea.width;
-                    popupDropHintHeight = layout.h == undefined ? layout.pxH : layout.h / 100 * clientArea.height;
+                    let width = layout.w == undefined ? layout.pxW : layout.w / 100 * clientArea.width;
+                    let height = layout.h == undefined ? layout.pxH : layout.h / 100 * clientArea.height;
+                    let x = layout.x == undefined ? layout.pxX : layout.x / 100 * clientArea.width;
+                    let y = layout.y == undefined ? layout.pxY : layout.y / 100 * clientArea.height;
+                    
+                    // Apply anchor
+                    let anchorX = layout.anchorX || 'L';
+                    let anchorY = layout.anchorY || 'T';
+                    
+                    if (anchorX === 'C') {
+                        x -= width / 2;
+                    } else if (anchorX === 'R') {
+                        x -= width;
+                    }
+                    
+                    if (anchorY === 'C') {
+                        y -= height / 2;
+                    } else if (anchorY === 'B') {
+                        y -= height;
+                    }
+                    
+                    popupDropHintX = x;
+                    popupDropHintY = y;
+                    popupDropHintWidth = width;
+                    popupDropHintHeight = height;
                     showPopupDropHint = true;
                     return; // Force return to avoid hiding popup
             }
@@ -336,8 +378,22 @@ PlasmaCore.Dialog {
                                 property bool tileActive: activeTileIndex == index
                                 property bool tileDisabled: modelData.d ? true : false
 
-                                x: (modelData.x == undefined ? modelData.pxX / clientArea.width : modelData.x / 100) * (tiles.width - borderOffset * 2) + borderOffset
-                                y: (modelData.y == undefined ? modelData.pxY / clientArea.height : modelData.y / 100) * (tiles.height - borderOffset * 2) + borderOffset
+                                x: {
+                                    let width = (modelData.w == undefined ? modelData.pxW / clientArea.width : modelData.w / 100) * (tiles.width - borderOffset * 2);
+                                    let x = (modelData.x == undefined ? modelData.pxX / clientArea.width : modelData.x / 100) * (tiles.width - borderOffset * 2) + borderOffset;
+                                    let anchorX = modelData.anchorX || 'L';
+                                    if (anchorX === 'C') x -= width / 2;
+                                    else if (anchorX === 'R') x -= width;
+                                    return x;
+                                }
+                                y: {
+                                    let height = (modelData.h == undefined ? modelData.pxH / clientArea.height : modelData.h / 100) * (tiles.height - borderOffset * 2);
+                                    let y = (modelData.y == undefined ? modelData.pxY / clientArea.height : modelData.y / 100) * (tiles.height - borderOffset * 2) + borderOffset;
+                                    let anchorY = modelData.anchorY || 'T';
+                                    if (anchorY === 'C') y -= height / 2;
+                                    else if (anchorY === 'B') y -= height;
+                                    return y;
+                                }
                                 width: (modelData.w == undefined ? modelData.pxW / clientArea.width : modelData.w / 100) * (tiles.width - borderOffset * 2)
                                 height: (modelData.h == undefined ? modelData.pxH / clientArea.height : modelData.h / 100) * (tiles.height - borderOffset * 2)
 

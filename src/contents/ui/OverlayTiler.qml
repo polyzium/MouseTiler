@@ -85,11 +85,32 @@ PlasmaCore.Dialog {
                 };
             } else {
                 let layout = tileRepeater.model[activeIndex];
+                let width = layout.w / 100 * clientArea.width;
+                let height = layout.h / 100 * clientArea.height;
+                let x = clientArea.x + layout.x / 100 * clientArea.width;
+                let y = clientArea.y + layout.y / 100 * clientArea.height;
+                
+                // Apply anchor
+                let anchorX = layout.anchorX || 'L';
+                let anchorY = layout.anchorY || 'T';
+                
+                if (anchorX === 'C') {
+                    x -= width / 2;
+                } else if (anchorX === 'R') {
+                    x -= width;
+                }
+                
+                if (anchorY === 'C') {
+                    y -= height / 2;
+                } else if (anchorY === 'B') {
+                    y -= height;
+                }
+                
                 return {
-                    x: clientArea.x + layout.x / 100 * clientArea.width,
-                    y: clientArea.y + layout.y / 100 * clientArea.height,
-                    width: layout.w / 100 * clientArea.width,
-                    height: layout.h / 100 * clientArea.height
+                    x: x,
+                    y: y,
+                    width: width,
+                    height: height
                 };
             }
         }
